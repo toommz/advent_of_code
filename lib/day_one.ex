@@ -7,11 +7,19 @@ defmodule AdventOfCode.DayOne do
   def run(input_path) do
     input_path
     |> parse_file()
-    |> sonar_depth()
+    |> sonar_depth_evolved()
   end
 
   def sonar_depth(steps) do
     steps
+    |> Enum.reduce({nil, 0}, &parse_depths/2)
+    |> elem(1)
+  end
+
+  def sonar_depth_evolved(steps) do
+    steps
+    |> Enum.chunk_every(3, 1, :discard)
+    |> Enum.map(&Enum.sum/1)
     |> Enum.reduce({nil, 0}, &parse_depths/2)
     |> elem(1)
   end
@@ -29,6 +37,6 @@ defmodule AdventOfCode.DayOne do
     path
     |> File.read!()
     |> String.split(@line_separator, trim: true)
-    |> Enum.map(&Integer.parse/1)
+    |> Enum.map(&String.to_integer/1)
   end
 end
