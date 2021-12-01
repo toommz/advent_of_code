@@ -25,13 +25,8 @@ defmodule AdventOfCode.DayOne do
   end
 
   defp parse_depths(current, {nil, 0}), do: {current, 0}
-
-  defp parse_depths(current, {previous, total}) do
-    case current > previous do
-      true -> {current, total + 1}
-      false -> {current, total}
-    end
-  end
+  defp parse_depths(current, {previous, total}) when current > previous, do: {current, total + 1}
+  defp parse_depths(current, {_previous, total}), do: {current, total}
 
   defp parse_file(path) do
     path
