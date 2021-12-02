@@ -23,4 +23,13 @@ defmodule AdventOfCode.DayTwoTest do
       assert DayTwo.move(steps) == 150
     end
   end
+
+  describe "move_evolved/1" do
+    test "returns the multiplication of current depth and horizontal position keeping aim in mind",
+         %{
+           steps: steps
+         } do
+      assert DayTwo.move_evolved(steps) == 900
+    end
+  end
 end

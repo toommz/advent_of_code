@@ -21,6 +21,8 @@ defmodule AdventOfCode.DayTwo do
     # |> Enum.reduce([depth: 0, position: 0], &follow_step/2)
   end
 
+  def move_evolved(_steps), do: nil
+
   defp parse(step) do
     {_, move} =
       Enum.find(@moves, fn {regex, _move} ->
