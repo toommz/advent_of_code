@@ -1,6 +1,7 @@
 defmodule AdventOfCode.DayTwo do
+  alias AdventOfCode.FileUtils
+
   @input_path "resources/day_two.txt"
-  @line_separator "\n"
 
   @moves [{~r/forward/, :forward}, {~r/up/, :up}, {~r/down/, :down}]
 
@@ -8,8 +9,11 @@ defmodule AdventOfCode.DayTwo do
 
   def run(input_path) do
     input_path
-    |> parse_file()
-    |> move_evolved()
+    |> FileUtils.parse_file()
+    |> case do
+      {:ok, data} -> move_evolved(data)
+      {:error, error} -> IO.inspect(error)
+    end
   end
 
   def move(steps) do
@@ -58,10 +62,4 @@ defmodule AdventOfCode.DayTwo do
 
   defp final_value(position: position, depth: depth), do: position * depth
   defp final_value(position: position, depth: depth, aim: _aim), do: position * depth
-
-  defp parse_file(path) do
-    path
-    |> File.read!()
-    |> String.split(@line_separator, trim: true)
-  end
 end
