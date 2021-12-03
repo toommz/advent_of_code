@@ -1,6 +1,8 @@
 defmodule AdventOfCode.DayTwoTest do
   use ExUnit.Case
 
+  alias AdventOfCode.DayTwo
+
   setup do
     steps = [
       "forward 5",
@@ -13,8 +15,6 @@ defmodule AdventOfCode.DayTwoTest do
 
     {:ok, %{steps: steps}}
   end
-
-  alias AdventOfCode.DayTwo
 
   describe "move/1" do
     test "returns the multiplication of current depth and horizontal position", %{
